@@ -1,0 +1,48 @@
+POST http://localhost:8080/signIn
+Content-Type: application/json
+
+{
+"login": "baddie2",
+"password":"g0yi8o1s"
+}
+
+###
+POST http://localhost:8080/signUp
+Content-Type: application/json
+
+{
+  "login": "baddie3",
+  "password":"g0yi8o1s",
+  "role": "DEV"
+}
+
+###
+
+POST http://localhost:8080/users/1
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibG9naW4iOiJiYWRkaWUiLCJyb2xlIjoiTUFOQUdFUiJ9.VVJzY7pqYFcWZK-0ciI8AUs-gHs6bPFuHDyyNURKqew
+Content-Type: application/json
+
+{
+  "role": "MANAGER"
+}
+
+
+###
+
+POST http://localhost:8080/tasks
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwibG9naW4iOiJiYWRkaWUyIiwicm9sZSI6Ik1BTkFHRVIifQ.OR07f4gED9m8s4Z3--q4dl468zbdk1w7TBTpwaiCuDM
+Content-Type: application/json
+
+{
+  "description": "another task",
+  "executorId": 1,
+  "priority": "LOW",
+  "state": "TO_DO",
+  "title": "Task 2",
+  "type": "TASK"
+}
+
+###
+
+GET http://localhost:8080/tasks
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwibG9naW4iOiJiYWRkaWUyIiwicm9sZSI6Ik1BTkFHRVIifQ.OR07f4gED9m8s4Z3--q4dl468zbdk1w7TBTpwaiCuDM
