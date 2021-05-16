@@ -25,7 +25,7 @@ public class Task {
     private TaskType type;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "default 'TO_DO'")
     private State state;
 
     @Column(nullable = false)
@@ -36,7 +36,7 @@ public class Task {
 
     private String description;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User creator;
 
     @ManyToOne

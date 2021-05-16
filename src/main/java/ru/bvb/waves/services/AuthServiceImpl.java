@@ -39,7 +39,6 @@ public class AuthServiceImpl implements AuthService {
         User user = User.builder()
                 .login(signUpDto.getLogin())
                 .hashPassword(passwordEncoder.encode(signUpDto.getPassword()))
-                .role(Role.valueOf(signUpDto.getRole()))
                 .tokens(new ArrayList<>())
                 .build();
         usersRepository.save(user);

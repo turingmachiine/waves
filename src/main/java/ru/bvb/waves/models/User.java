@@ -26,6 +26,7 @@ public class User {
     private String hashPassword;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(columnDefinition = "default 'DEV'")
     private Role role;
 
     @OneToMany(mappedBy = "creator")

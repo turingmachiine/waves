@@ -37,7 +37,7 @@ public class TaskDto {
                 .title(task.getTitle())
                 .priority(task.getPriority())
                 .description(task.getDescription())
-                .creator(UserDto.from(task.getCreator()))
+                .creator(task.getCreator() != null? UserDto.from(task.getCreator()) : null)
                 .executor(task.getExecutor() != null ? UserDto.from(task.getExecutor()) : null)
                 .createdAt(task.getCreatedAt())
                 .updatedAt(task.getUpdatedAt())

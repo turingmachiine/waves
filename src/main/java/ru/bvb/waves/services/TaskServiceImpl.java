@@ -62,8 +62,10 @@ public class TaskServiceImpl implements TaskService {
         if (taskDto.getExecutorId() != null) {
             User user = usersRepository.findById(taskDto.getExecutorId()).orElseThrow(
                     () -> new IllegalArgumentException("User not found"));
-            if (userStateCheck(user, task.getState())) {
+            if (userStateCheck(user, task.getState())) { // проверка
                 task.setExecutor(user);
+            } else {
+                throw new IllegalArgumentException("This user can't be executor");
             }
         }
         if (taskDto.getBlockedBy() != null) {
@@ -164,12 +166,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> searchTask(String query, Integer page, Integer size) {
-        try {
-            return from(tasksRepository.findByTitleContainsIgnoreCaseOrDescriptionContainsIgnoreCaseOrId(query, query,
-                    Long.parseLong(query), PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt"))));
-        } catch (NumberFormatException e) {
-            return from(tasksRepository.findByTitleContainsIgnoreCaseOrDescriptionContainsIgnoreCaseOrId(query, query,
-                    0L, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt"))));
-        }
+        return from(tasksRepository.search(query, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt"))));
     }
 }
